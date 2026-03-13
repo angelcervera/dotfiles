@@ -1,22 +1,14 @@
 {
   "mcpServers": {
-    "context7": {
-      "url": "https://mcp.context7.com/mcp",
-      "headers": {
-        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-      }
-    },
     "playwright": {
       "command": "npx",
       "args": [
         "-y",
         "@playwright/mcp@latest"
-      ]
-    },
-    "github": {
-      "url": "https://api.githubcopilot.com/mcp/",
-      "headers": {
-        "Authorization": "Bearer {env:GITHUB_PAT_TOKEN}"
+      ],
+      "env": {
+        "PATH": "/home/angelcc/.nvm/versions/node/v24.13.0/bin:$PATH",
+        "SHELL": "/bin/sh"
       }
     },
     "chrome-devtools": {
@@ -24,7 +16,17 @@
       "args": [
         "-y",
         "chrome-devtools-mcp@latest"
-      ]
+      ],
+      "env": {
+        "PATH": "/home/angelcc/.nvm/versions/node/v24.13.0/bin:$PATH",
+        "SHELL": "/bin/sh"
+      }
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      }
     }
   }
 }

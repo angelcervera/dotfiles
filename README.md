@@ -65,6 +65,14 @@ Finally apply:
 workstation/scripts/stow.sh
 ```
 
+Verification commands:
+
+```bash
+workstation/scripts/verify-tools.sh minimal
+workstation/scripts/verify-tools.sh full
+workstation/scripts/verify.sh full
+```
+
 ## Update workflow
 
 - Use OMZ plugin `dfup` (does `git pull --ff-only` + restow stow packages).
@@ -128,3 +136,8 @@ mise install
 - `DF_SKIP_STOW=1` - skip the stow apply step.
 - `DF_SKIP_VERIFY=1` - skip verification phase.
 - `DF_OMZ_DIR=/path` - override Oh My Zsh location for bootstrap scripts.
+
+## Agent maintenance notes
+
+- Repo automation guidance for AI agents lives in `AGENTS.md`.
+- When changing expected tooling or bootstrap behavior, keep `workstation/scripts/verify-tools.sh`, `workstation/scripts/verify.sh`, and `README.md` aligned.

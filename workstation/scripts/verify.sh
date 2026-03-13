@@ -16,6 +16,9 @@ case "$profile" in
     ;;
 esac
 
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+tools_verify_script="$script_dir/verify-tools.sh"
+
 pass_count=0
 fail_count=0
 
@@ -61,6 +64,16 @@ check_path_symlink() {
 }
 
 printf 'Verification profile: %s\n' "$profile"
+
+if [[ -x "$tools_verify_script" ]]; then
+  if "$tools_verify_script" "$profile"; then
+    check_ok 'verify-tools.sh passed'
+  else
+    check_fail 'verify-tools.sh failed'
+  fi
+else
+  check_fail "Missing tool verification script: $tools_verify_script"
+fi
 
 check_cmd zsh
 check_path_exists "$HOME/.zshrc" '.zshrc'
