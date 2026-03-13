@@ -1,0 +1,24 @@
+# IDE
+.idea
+
+# macOS
+.DS_Store
+
+# Backup files
+*~
+*.swp
+*.swo
+
+# Mise local overrides (global config in workstation/mise/ is tracked)
+.mise.local.toml
+
+# Oh My Zsh cache (custom plugins are tracked)
+zsh/.oh-my-zsh/cache/
+
+# Zsh history and sessions (if accidentally placed in repo)
+#.zsh_history
+#.zsh_sessions/
+
+# Local environment overrides
+.envrc.local
+session-ses_*.md

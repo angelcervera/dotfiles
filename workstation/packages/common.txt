@@ -1,0 +1,13 @@
+# Base and full-profile CLI tools.
+git
+curl
+stow
+zsh
+fzf
+ripgrep
+jq
+tmux
+neovim
+gh
+bat
+direnv

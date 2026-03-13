@@ -1,0 +1,14 @@
+# Global mise configuration for this workstation.
+#
+# Change versions here, then run:
+#   mise install
+
+[tools]
+go = "1.24.0"
+node = "22.14.0"
+bun = "1.2.4"
+rust = "1.85.0"
+
+[settings]
+# Allow reading standard version files for selected tools when useful.
+idiomatic_version_file_enable_tools = ["node"]
