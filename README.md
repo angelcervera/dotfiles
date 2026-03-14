@@ -4,7 +4,7 @@ This repository manages shell dotfiles with GNU Stow and bootstraps a reproducib
 
 ## What this repo does
 
-- Uses `stow` to symlink `zsh/` and `alacritty/` packages into `$HOME`.
+- Uses `stow` to symlink `zsh/`, `alacritty/`, and `jetbrains-ai/` packages into `$HOME`.
 - Installs and configures Oh My Zsh and selected plugins.
 - Installs curated CLI tooling by OS.
 - Installs `mise` and links a global config for pinned tool versions.
@@ -14,6 +14,7 @@ This repository manages shell dotfiles with GNU Stow and bootstraps a reproducib
 
 - `zsh/` - stow package with `.zshrc`, aliases/functions, and custom OMZ plugins.
 - `alacritty/` - stow package with `~/.config/alacritty/alacritty.toml`.
+- `jetbrains-ai/` - stow package with `~/.ai/mcp/mcp.json` for JetBrains AI Assistant MCP config.
 - `workstation/` - bootstrap implementation details (not stowed).
 - `tests/` - shell tests for `gwt` and bootstrap smoke behavior.
 
@@ -56,7 +57,7 @@ DF_SKIP_STOW=1 ./bootstrap.sh full
 Then preview stow actions safely:
 
 ```bash
-stow --dir "$PWD" --target "$HOME" -n -v -R zsh alacritty
+stow --dir "$PWD" --target "$HOME" -n -v -R zsh alacritty jetbrains-ai
 ```
 
 Finally apply:
@@ -88,7 +89,7 @@ workstation/scripts/stow.sh
 Remove stowed links for this package:
 
 ```bash
-stow --dir "$HOME/dotfiles" --target "$HOME" -D zsh alacritty
+stow --dir "$HOME/dotfiles" --target "$HOME" -D zsh alacritty jetbrains-ai
 ```
 
 ## Tool versions (`mise`)
@@ -103,7 +104,7 @@ mise install
 
 ## JetBrains MCP config
 
-- Project-local JetBrains AI Assistant MCP config lives at `.ai/mcp/mcp.json`.
+- JetBrains AI Assistant MCP config is tracked in `jetbrains-ai/.ai/mcp/mcp.json` and stows to `~/.ai/mcp/mcp.json`.
 - It mirrors the MCP servers configured in OpenCode: `context7`, `playwright`, `github`, and `chrome-devtools`.
 - The remote entries keep the same env-based placeholders from OpenCode:
   - `CONTEXT7_API_KEY`
@@ -113,7 +114,7 @@ mise install
 ## Troubleshooting
 
 - Symlink conflicts
-  - Run dry-run first: `stow --dir "$PWD" --target "$HOME" -n -v -R zsh alacritty`.
+  - Run dry-run first: `stow --dir "$PWD" --target "$HOME" -n -v -R zsh alacritty jetbrains-ai`.
   - If conflicts exist, move conflicting files manually and re-run.
   - Avoid `--adopt` unless you explicitly want to move target files into the package.
 

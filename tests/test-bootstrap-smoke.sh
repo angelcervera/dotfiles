@@ -44,10 +44,11 @@ fi
 mkdir -p "$HOME/.config"
 
 log 'Validating expected stow dry-run output'
-dryrun_output="$(stow --dir "$repo_root" --target "$HOME" --simulate --verbose=2 --restow zsh alacritty 2>&1 || true)"
+dryrun_output="$(stow --dir "$repo_root" --target "$HOME" --simulate --verbose=2 --restow zsh alacritty jetbrains-ai 2>&1 || true)"
 
 [[ "$dryrun_output" == *'.zshrc'* ]] || fail 'stow dry-run did not mention .zshrc'
 [[ "$dryrun_output" == *'.config/zsh'* ]] || fail 'stow dry-run did not mention zsh config path'
 [[ "$dryrun_output" == *'.config/alacritty'* ]] || fail 'stow dry-run did not mention alacritty config path'
+[[ "$dryrun_output" == *'.ai'* ]] || fail 'stow dry-run did not mention JetBrains AI path'
 
 log 'test-bootstrap-smoke passed'

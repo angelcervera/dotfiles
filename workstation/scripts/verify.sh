@@ -63,6 +63,22 @@ check_path_symlink() {
   fi
 }
 
+check_path_stow_managed() {
+  local path="$1"
+  local label="$2"
+  local current="$path"
+
+  while [[ "$current" != "$HOME" && "$current" != "/" ]]; do
+    if [[ -L "$current" ]]; then
+      check_ok "$label is stow-managed via symlink: $current"
+      return 0
+    fi
+    current="$(dirname "$current")"
+  done
+
+  check_fail "$label is not stow-managed by symlink: $path"
+}
+
 printf 'Verification profile: %s\n' "$profile"
 
 if [[ -x "$tools_verify_script" ]]; then
@@ -77,12 +93,14 @@ fi
 
 check_cmd zsh
 check_path_exists "$HOME/.zshrc" '.zshrc'
-check_path_symlink "$HOME/.zshrc" '.zshrc'
+check_path_stow_managed "$HOME/.zshrc" '.zshrc'
 check_path_exists "$HOME/.config/alacritty/alacritty.toml" 'Alacritty config'
-check_path_symlink "$HOME/.config/alacritty/alacritty.toml" 'Alacritty config'
+check_path_stow_managed "$HOME/.config/alacritty/alacritty.toml" 'Alacritty config'
+check_path_exists "$HOME/.ai/mcp/mcp.json" 'JetBrains MCP config'
+check_path_stow_managed "$HOME/.ai/mcp/mcp.json" 'JetBrains MCP config'
 
 check_path_exists "$HOME/.oh-my-zsh" 'Oh My Zsh directory'
-check_path_symlink "$HOME/.oh-my-zsh/custom/plugins/git-wt" 'git-wt plugin path'
+check_path_stow_managed "$HOME/.oh-my-zsh/custom/plugins/git-wt" 'git-wt plugin path'
 
 if [[ -f "$HOME/.oh-my-zsh/custom/plugins/git-wt/git-wt.plugin.zsh" ]]; then
   if zsh -c 'source "$HOME/.oh-my-zsh/custom/plugins/git-wt/git-wt.plugin.zsh" >/dev/null 2>&1 && typeset -f gwt >/dev/null'; then

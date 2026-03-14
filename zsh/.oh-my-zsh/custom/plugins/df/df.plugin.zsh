@@ -63,7 +63,7 @@ dfstow() {
     return 1
   fi
 
-  stow --dir "$root" --target "$HOME" -R zsh alacritty
+  stow --dir "$root" --target "$HOME" -R zsh alacritty jetbrains-ai
 }
 
 dfup() {
@@ -95,7 +95,7 @@ dfhelp() {
   cat <<'EOF'
 Dotfiles helper commands:
   dfcd        cd to dotfiles repository root
-  dfstow      restow zsh and alacritty packages
+  dfstow      restow zsh, alacritty, and jetbrains-ai packages
   dfup        git pull --ff-only and restow stow packages
   dfdoctor    run workstation verification checks
   dfhelp      show this help

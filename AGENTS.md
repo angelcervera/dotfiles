@@ -48,7 +48,7 @@ When changing package lists, runtime versions, shell config, or bootstrap behavi
   - `workstation/scripts/verify.sh minimal`
   - `workstation/scripts/verify.sh full`
 - Safe Stow preview:
-  - `stow --dir "$PWD" --target "$HOME" -n -v -R zsh alacritty`
+  - `stow --dir "$PWD" --target "$HOME" -n -v -R zsh alacritty jetbrains-ai`
 
 ## Tool expectations
 
@@ -61,5 +61,6 @@ When changing package lists, runtime versions, shell config, or bootstrap behavi
 
 - `zsh/`
 - `alacritty/`
+- `jetbrains-ai/`
 
 `workstation/` is implementation detail and must not be stowed.

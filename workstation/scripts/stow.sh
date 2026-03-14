@@ -10,7 +10,7 @@ log() {
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(cd "$script_dir/../.." && pwd)"
 
-if [[ ! -f "$repo_root/bootstrap.sh" || ! -d "$repo_root/zsh" || ! -d "$repo_root/alacritty" ]]; then
+if [[ ! -f "$repo_root/bootstrap.sh" || ! -d "$repo_root/zsh" || ! -d "$repo_root/alacritty" || ! -d "$repo_root/jetbrains-ai" ]]; then
   log ERROR "Refusing to run from unexpected location: $repo_root"
   exit 1
 fi
@@ -28,7 +28,7 @@ fi
 mkdir -p "$HOME/.config"
 
 declare -a cmd=(stow --dir "$repo_root" --target "$HOME")
-declare -a packages=(zsh alacritty)
+declare -a packages=(zsh alacritty jetbrains-ai)
 
 if [[ "${DF_STOW_DRY_RUN:-0}" == "1" ]]; then
   cmd+=(--simulate --verbose=2)
